@@ -1,0 +1,27 @@
+<table>
+    <tr>
+        <th>Id</th>
+        <th>FirstName</th>
+        <th>LastName</th>
+        <th>BirthDate</th>
+        <th>Year</th>
+        <th>Action</th>
+    </tr>
+    <tr *ngFor="let student of students">
+        <td>{{ student.id }}</td>
+        <td>{{ student.firstName }}</td>
+        <td>{{ student.lastName }}</td>
+        <td>{{ student.birthDate | date: 'dd-MM-yyyy' }}</td>
+        <td *ngIf="!student.year">{{ 1 }}</td>
+        <td *ngIf="student.year">{{ student.year }}</td>
+        <td>
+            <button type="toggle"
+                    (click)="showCoursesFor(student)">show courses</button>
+        </td>
+        <app-courses #coursesTemplate
+                     *ngIf="student.isShowingCourses"
+                     [courses]="student.courses"
+                     (onDeleteCourse)="deleteCourseById(student, $event)">
+        </app-courses>
+    </tr>
+</table>

@@ -1,0 +1,20 @@
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Ttile</th>
+        <th>Year</th>
+        <th>Semester</th>
+        <th>Credits</th>
+        <th>Action</th>
+    </tr>
+    <tr *ngFor="let course of courses">
+        <td>{{ course.id }}</td>
+        <td>{{ course.title }}</td>
+        <td>{{ course.year }}</td>
+        <td>{{ course.semester }}</td>
+        <td>{{ course.credits }}</td>
+        <td>
+            <button (click)="deleteCourse(course.id)"> Delete course </button>
+        </td>
+    </tr>
+</table>
