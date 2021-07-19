@@ -1,3 +1,49 @@
+<form [formGroup]="courseForm"
+      (ngSubmit)="addCourse()">
+    <label>Id:
+        <input formControlName="id">
+    </label>
+    <label>Ttile:
+        <input formControlName="title">
+    </label>
+    <label>Year:
+        <input type="number" formControlName="year">
+    </label>
+    <label>Semester:
+        <input type="number" formControlName="semester">
+    </label>
+    <label>Credits:
+        <input type="number" formControlName="credits">
+    </label>
+    <button type="submit" [disabled]="!courseForm.valid"> Add course </button>
+</form>
+
+
+<form #courseFormTemplate="ngForm">
+    <label>Id:
+        <input name="id" [(ngModel)]='newCourse.id'>
+    </label>
+    <label>Ttile:
+        <input name="title" [(ngModel)]='newCourse.title'
+                (ngModelChange)="changeTitle($event)">
+    </label>
+    <label>Year:
+        <input name="year" required type="number" [(ngModel)]='newCourse.year'>
+    </label>
+    <label>Semester:
+        <input name="semester" min="1" max="2" type="number" [(ngModel)]='newCourse.semester'>
+    </label>
+    <label>Credits:
+        <input name="credits" type="number" [ngModel]='newCourse.credits'>
+    </label>
+    <button type="submit"
+            [disabled]="!courseFormTemplate.form.valid"
+            (click)="addCourseWithTemplateForms(courseFormTemplate.form)">
+             Add course
+    </button>
+</form>
+
+
 <table>
     <tr>
         <th>Id</th>
